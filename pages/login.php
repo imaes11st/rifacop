@@ -21,7 +21,7 @@
 <body>
 <form action="../php/validar.php" method="post" class="containerLogin">
     <div class="titleLogin">
-      <h1>Iniciar Sesiòn</h1>
+      <h1>Registre los Asistentes</h1>
     </div>
       <div method="post"class="boxForm">
         <div class="mb-2">

@@ -33,6 +33,8 @@ if($_SESSION['usuario'] AND $_SESSION['cedula']){
 <body>
   <?php
     @$permiso=$_GET['permiso'];
+    @$estado=$_GET['est'];
+    
    
     if($permiso){
       require("php/votacion.php");

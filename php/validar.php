@@ -19,7 +19,8 @@
     $cedula=$res['cedula'];
     $estado=$res['estado'];
     $rol=$res['rol'];
-    echo $rol;
+    $habil=$res['habil'];
+   
 
 
 
@@ -27,12 +28,19 @@
         session_start();
         $_SESSION['usuario']=$nombre;
         $_SESSION['cedula']=$cedula;
-
-        $sqlAsistencia="INSERT INTO asistencia(usuario,fecha) VALUES($cedula,'$fecha')";
-
-        $asistencia=mysqli_query($con,$sqlAsistencia)or die("error al consultar".mysli_error($con));
-        header("LOCATION:../index.php?est=usuario");
+        
+        if($habil==1)
+        {
+            $sqlAsistencia="INSERT INTO asistencia(usuario,fecha,id_usuario,asistio) VALUES($cedula,'$fecha',$cedula,1)";
+            $asistencia=mysqli_query($con,$sqlAsistencia)or die("error al consultar".mysli_error($con));
+            echo "subio";
+        }
+        
+      
+         header("LOCATION:../index.php?est=usuario");
         echo "usuario";
+        echo $rol;
+        echo $habil;
         // echo $_SESSION['usuario'];
     }
 
@@ -41,12 +49,19 @@
         $_SESSION['usuario']=$nombre;
         $_SESSION['cedula']=$cedula;
 
-        $sqlAsistencia="INSERT INTO asistencia(udusrio,fecha) VALUES()";
-        $asistencia=mysqli_query($con,$sql)or die("error al consultar".mysli_error($con));
-        header("LOCATION:../administrador.php?est=usuario");
+        if($habil==1)
+        {
+            $sqlAsistencia="INSERT INTO asistencia(usuario, fecha,id_usuario,asistio) VALUES($cedula, '$fecha',$cedula,1)";
+             $asistencia=mysqli_query($con,$sqlAsistencia)or die("error al consultar".mysqli_error($con));
+            echo "subio";
+        }
+
+       
+        
+        header("LOCATION:../administrador.php");
 
         // echo $_SESSION['usuario'];
-
+        echo $rol;
         echo "admin";
     }
 

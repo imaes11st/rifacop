@@ -16,15 +16,17 @@
   date_default_timezone_set('America/Bogota');
 
   $sql = "SELECT asistencia.id, usuarios.nombre, usuarios.cedula, asistencia.fecha
-    FROM asistencia
-    INNER JOIN usuarios ON asistencia.usuario = usuarios.cedula";
+  FROM asistencia
+  INNER JOIN usuarios ON asistencia.usuario = usuarios.cedula
+  WHERE usuarios.habil = 1";
+  
 
   $cantidadAsistencia = "SELECT count(*) cantidad FROM asistencia";
-  $queryCantidad = mysqli_query($con, $cantidadAsistencia) or die("error al consultar" . mysli_error($con));
+  $queryCantidad = mysqli_query($con, $cantidadAsistencia) or die("error al consultar" . mysqli_error($con));
   $reg = mysqli_fetch_array($queryCantidad);
   $cantAsis = $reg['cantidad'];
 
-  $query = mysqli_query($con, $sql) or die("error al consultar" . mysli_error($con));
+  $query = mysqli_query($con, $sql) or die("error al consultar" . mysqli_error($con));
 
   echo '<div class="container">';
   echo '<table class="table table-bordered">';

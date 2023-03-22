@@ -19,8 +19,8 @@
   </head>
 
   <body>
-    <?php require("php/conexion.php"); ?>
-    <div class="text-center">
+<?php require("php/conexion.php"); ?>
+<div class="container text-center">
   <!-- Botón para abrir el modal -->
   <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Escoger ganador
@@ -28,14 +28,14 @@
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Escoger ganador</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>¿Está seguro que desea escoger un ganador?</p>
+          <h5>¿Está seguro que desea escoger un ganador?</h5>
         </div>
         <div class="modal-footer">
           <form method="POST">
@@ -47,27 +47,47 @@
     </div>
   </div>
 
-  <!-- Resultado de la rifa -->
-  <?php
-    if (isset($_POST['escoger_ganador'])) {
-      // Seleccionar un usuario aleatorio para la rifa
-      $sqlUsuarioAleatorio = "SELECT * FROM usuarios WHERE habil = 1 ORDER BY RAND() LIMIT 1";
-      $queryUsuarioAleatorio = mysqli_query($con, $sqlUsuarioAleatorio) or die("Error al consultar usuario aleatorio: " . mysqli_error($con));
+<!-- Resultado de la rifa -->
+<?php
+if (isset($_POST['escoger_ganador'])) {
 
-      // Verificar si se encontró un usuario para la rifa
-      if ($queryUsuarioAleatorio && mysqli_num_rows($queryUsuarioAleatorio) > 0) {
-        $resUsuarioAleatorio = mysqli_fetch_array($queryUsuarioAleatorio);
-        $nombreGanador = $resUsuarioAleatorio['nombre'];
-        $cedulaGanador = $resUsuarioAleatorio['cedula'];
+  require("php/conexion.php");
+  $numeroMinimo=mysqli_query($con,"SELECT MIN(id) AS minId FROM asistencia")or die("error al consultar".mysqli_error($con));
+  $resultadoNumeroMinimo=mysqli_fetch_array($numeroMinimo);
+  $numMinimo=$resultadoNumeroMinimo['minId'];
 
-        // Mostrar el nombre y número de cédula del ganador
-        echo "<div class='alert alert-success' role='alert'>El ganador de la rifa es: $nombreGanador con número de cédula $cedulaGanador</div>";
-      } else {
-        echo "<div class='alert alert-danger' role='alert'>No se encontraron usuarios para la rifa.</div>";
-      }
-    }
-  ?>
-</div>
+  $numeroMaximo=mysqli_query($con,"SELECT MAX(id) AS maxId FROM asistencia")or die("error al consultar".mysqli_error($con));
+  $resultadoNumeroMaximo=mysqli_fetch_array($numeroMaximo);
+  $numMaximo=$resultadoNumeroMaximo['maxId'];
+
+  $numeroGanador=rand($numMinimo,$numMaximo);
+
+  $ganador=mysqli_query($con,"SELECT asi.usuario AS usuario,usu.nombre AS nombreUsuario 
+  FROM asistencia AS asi INNER JOIN usuarios AS usu ON asi.usuario=usu.cedula
+   WHERE asi.id='$numeroGanador'")or die("error al consultar".mysqli_error($con));
+  $resulGanador=mysqli_fetch_array($ganador);
+  $cedulaGanador=$resulGanador['usuario'];
+  $nombreUsuario=$resulGanador['nombreUsuario'];
+?>
+
+  <!-- Agrega un contenedor y clases de Bootstrap para que se vea mejor -->
+  <div class="container mt-5">
+    <div class="card mx-auto" style="width: 18rem;">
+      <div class="card-body">
+        <h6 class="card-title">Ganador del sorteo</h6>
+        <p class="card-text">El ganador del sorteo es:</p>
+        <h4 class="card-subtitle mb-2 text-muted"><?php echo $nombreUsuario; ?></h4>
+        <p class="card-text">con número de cédula:</p>
+        <h6 class="card-subtitle mb-2 text-muted"><?php echo $cedulaGanador; ?></h6>
+      </div>
+    </div>
+  </div>
+
+<?php      
+}
+?>
+
+
 
     <!-- Bootstrap JS -->
     <script
