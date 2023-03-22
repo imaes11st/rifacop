@@ -1,0 +1,93 @@
+*{
+  margin: 0px;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+.titleHome {
+  align-items: center;
+  display: flex;
+  color:#b5b5b5;
+  text-align: center !important;
+  
+}
+.divTitle{
+  display: flex;
+  flex-direction: row-reverse;
+  padding-right: 60px;
+}
+
+.containerHome {
+  margin-top: 0%;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.container{
+  font-size: xx-small !important;
+  text-align: center;
+}
+
+.card{
+  padding: 10px;
+  margin: 10px;
+  display: inline-block;
+}
+.sidebar a{
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  color: #C2C2C2;
+}
+.sidebar ul {
+  margin: 2rem auto;
+  display: block;
+  width: 50%;
+  min-width: 170px;
+  text-decoration: none;
+  list-style: none inside; 
+}
+.sidebar li {
+  text-align: left;
+  display: flexbox;
+  margin-bottom: inherit;
+}
+.logo {
+  height: 40px;
+  background-color: transparent; 
+  display: flex;
+  margin-left: 2px;
+}
+.table {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.table th {
+  background-color: #ddd;
+  color: #333;
+  font-weight: bold;
+}
+
+.ancla {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.ancla h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+

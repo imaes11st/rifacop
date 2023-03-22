@@ -1,0 +1,47 @@
+.containerLogin {
+  margin-top: 65px;
+  margin-left: 350px;
+  margin-right: 350px;
+  border-radius: 20px;
+  border: 1px solid #9b9b9b;
+  padding: 15px;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.titleLogin {
+  padding: 25px;
+  align-items: center;
+  display: flex;
+}
+.boxForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.formCheck {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.formCheckDiv {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding-top: 8px;
+}
+
+.logo {
+  height: 80px;
+  background-color: transparent; 
+  display: flex;
+  margin-left: 2px;
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+
+}
