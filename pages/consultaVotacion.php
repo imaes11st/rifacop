@@ -47,34 +47,26 @@ $query4=mysqli_query($con,$sqlPla4)or die("error al consultar".mysqli_error($con
 $res4=mysqli_fetch_array($query4);
 $cantidad4=$res4['cantidad'];
 
-$query5=mysqli_query($con,$sqlPla5)or die("error al consultar".mysqli_error($con));
-$res5=mysqli_fetch_array($query5);
-$cantidad5=$res5['cantidad'];
+
 
 ?>
 <div class="container">
+    <?php
+    $sqlPlanchas="SELECT count(*) total FROM planchas";
+    $query=mysqli_query($con,$sqlPlanchas)or die("error al consultar".mysqli_error($con));
+    $res=mysqli_fetch_array($query);
+    $total=$res['total'];
+
+    for ($i=1; $i<=5; $i++) {
+    ?>
 <div class="card">
-        <h1>Plancha #1</h1>
+        <h1>Plancha<?php echo $i?></h1>
         <?php echo $cantidad; ?>
     </div>
-    <div class="card">
-        <h1>Plancha #2</h1>
-        <?php echo $cantidad2; ?>
-    </div>
-    <div class="card">
-        <h1>Plancha #3</h1>
-        <?php echo $cantidad3; ?>
-    </div>
-    <div class="card">
-        <h1>Plancha #4</h1>
-        <?php echo $cantidad4; ?>
-    </div>
-    <div class="card">
-        <h1>Plancha #5</h1>
-        <?php echo $cantidad5; ?>
-    </div>
 </div>
-   
+<?php
+}
+?>
 
 <div>
     <a class="anclaSalir"href="./php/salir.php">Salir</a>
